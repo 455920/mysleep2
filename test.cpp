@@ -35,7 +35,7 @@ int  mysleep(unsigned time)
   suspmask = oldmask;
   sigdelset(&suspmask,SIGALRM);
 
-  sigsuspend(&suspmask);//原子操作，解除屏蔽，然后挂起，等待捕获
+  sigsuspend(&suspmask);//原子操作，解除屏蔽，然后挂起，等待捕获，这里只是暂时的解除了屏蔽
   //如果解除屏蔽和挂起不是原子操作，就可能在因为切换了进程导致再没有pause的时候信号就已经被处理了，那么pause永远是挂起
   unslept=alarm(0);
 
